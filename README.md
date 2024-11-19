@@ -45,3 +45,13 @@ The default username is admin and we need to get the password from a secret stor
 
 `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo`
 
+With that password you can now login to the Argo CD with the admin username. 
+
+## Install GitHub Actions Runner Controller
+
+```
+kubectl create namespace arc-systems
+helm install arc \
+    --namespace arc-systems \
+    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+```
