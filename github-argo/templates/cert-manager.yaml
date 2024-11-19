@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ (index .Values "cert-manager" "targetRevision") }}
     helm:
       values: |
-        crds.enabled=true
+        installCRDs: true
   syncPolicy:
     automated:
       prune: true
