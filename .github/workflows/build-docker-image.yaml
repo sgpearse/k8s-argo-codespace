@@ -30,7 +30,7 @@ jobs:
           labels: ${{ steps.meta.output.labels }}
       - name: Update Helm chart with new image
         run: |
-          sed -i "/argo-flask-demo/ c\    image: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/argo-flask-demo:${{ steps.date.outputs.date }}" helm-chart/values.yaml
+          sed -i "/argo-flask-demo/ c\    image: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/argo-flask-demo:${{ steps.date.outputs.date }}" flask-helm/values.yaml
       - name: Push changes to GitHub
         run: |
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
