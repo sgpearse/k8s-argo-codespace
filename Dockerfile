@@ -1,3 +1,4 @@
+# Use the slim Python 3.10 image as the base to build on
 FROM python:3.10-slim
 
 # Copy in the Flask application code
