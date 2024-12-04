@@ -1,0 +1,11 @@
+replicaCount: 1
+
+webapp:
+  name: flask-demo
+  group: flask-demo
+  path: /
+  container: 
+    image: hub.k8s.ucar.edu/ncote/data-flask:2024-10-04.22.03
+    port: 5000
+    memory: 1G
+    cpu: 2
