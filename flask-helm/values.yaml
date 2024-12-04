@@ -5,7 +5,7 @@ webapp:
   group: flask-demo
   path: /
   container: 
-    image: hub.k8s.ucar.edu/ncote/data-flask:2024-10-04.22.03
+    image: docker.io/ncging/argo-flask-demo:2024-12-04.20.31
     port: 5000
     memory: 1G
     cpu: 2
