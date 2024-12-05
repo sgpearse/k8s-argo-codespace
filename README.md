@@ -1,10 +1,18 @@
 # k8s-argo-codespace
-Provide a preconfigured codespace that can be launched in VSCode locally that contains k8s, argo, and other tools to learn
+This repository provides a preconfigured environment that starts a Kubernetes cluster on Docker when launched in Visual Studio (VS) Code desktop. If VS Code is not installed on your machine, please see [Download Visual Studio Code](https://code.visualstudio.com/download) 
 
-## Overview
-Open this repo in Codespaces and then open it in VSCode desktop to launch a Kubernetes cluster to install apps and play with.
+```note
+This walkthrough requires Docker to be installed on your machine and the Docker engine must be running for everything to start appropriately. 
+```
+
+## Getting Started
+Fork this repository in to your own GitHub account. Once the repository has been forked select the button labeled `<> Code` in the upper right of the webpages body. This opens a dropdown containing 2 tabs. The default tab that opens is the Local tab and contains information on how to Clone the repository. Select the Codespaces tab and use the `Create codespace on main` button to launch a new tab in your browser containing an Interactive Development Environment (IDE) with the repository code.  
+
+In the upper left there are three horizontally stacked lines, often referred to as a hamburger button, click this to open a dropdown menu. Near the bottom is a link to `Open in VS Code desktop`. Select this and it will prompt to confirm that VS Code should be opened. When VS Code launches a script will setup the environment and automatically run `minikube start` to launch a Kubernetes (K8s) cluster. As long as minikube starts without any issues it can now be used to install apps and get familiar with how Argo CD deploys and manages applications. 
 
 ## Install Argo CD
+
+The first steps we will take are to create a namespace in K8s named argocd and then install Argo CD into that namespace. This can be accomplished by pasting the following commands in to the terminal window in VS Code.
 
 ```
 kubectl create namespace argocd
@@ -47,11 +55,6 @@ The default username is admin and we need to get the password from a secret stor
 
 With that password you can now login to the Argo CD with the admin username. 
 
-## Install GitHub Actions Runner Controller
+## Install flask-helm chart
 
-```
-kubectl create namespace arc-systems
-helm install arc \
-    --namespace arc-systems \
-    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
-```
+This repository contains a Helm chart that runs a very basic Flask application. 
