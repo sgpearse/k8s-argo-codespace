@@ -57,7 +57,7 @@ With that password you can now login to the Argo CD with the admin username.
 
 ## Install flask-helm chart
 
-This repository contains a Helm chart that runs a very basic Flask application. From the Argo CD UI, after getting logged in, select the button in the upper right for `+ NEW APP`. This brings up a window where an application can be added to Argo for continuous deployment. Inside the new window there are a few fields that need to be filled out to successfully deploy the flask-helm directory. 
+This repository contains a Helm chart that runs a very basic Flask application. There is a README file in the flask-helm directory that explains it's content in greater detail. From the Argo CD UI, after getting logged in, select the button in the upper right for `+ NEW APP`. This brings up a window where an application can be added to Argo for continuous deployment. Inside the new window there are a few fields that need to be filled out to successfully deploy the flask-helm directory. 
 
 ### General settings
 
