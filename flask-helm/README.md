@@ -94,8 +94,7 @@ This is where the name of the ingress controller is provided. The cluster we use
 tls:
 The `tls:` field is where we define the hostname, in `hosts:`, to use in the TLS certificate provided as well as set a `secretName` for the certificate issued. 
 
-
-***The secretName field needs to be unique for the fully qualified domain name (FQDN) used since it is tied to the TLS certificate that is tied to the same FQDN.***
+The secretName field needs to be unique for the fully qualified domain name (FQDN) used since it is tied to the TLS certificate that is tied to the same FQDN.
 
 host:
 This is the FQDN for the application being deployed. This name needs to be unique and also has to be in the `.k8s.ucar.edu` subdomain. The cluster utilizes [ExternalDNS](https://github.com/bitnami/charts/tree/main/bitnami/external-dns) to provision new DNS records but it is limited to the `.k8s.ucar.edu` domain.
