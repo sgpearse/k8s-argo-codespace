@@ -57,4 +57,32 @@ With that password you can now login to the Argo CD with the admin username.
 
 ## Install flask-helm chart
 
-This repository contains a Helm chart that runs a very basic Flask application. 
+This repository contains a Helm chart that runs a very basic Flask application. From the Argo CD UI, after getting logged in, select the button in the upper right for `+ NEW APP`. This brings up a window where an application can be added to Argo for continuous deployment. Inside the new window there are a few fields that need to be filled out to successfully deploy the flask-helm directory. 
+
+### General settings
+
+Application Name: A descriptive name for the actual application. In this case use something like flask-demo
+
+Project Name: Argo CD allows applications to be divided in to different projects and can take advantage of things like Role Based Access Controls (RBAC). For this example using the default project is fine. Click on the line below Project Name and open a drop down to select the default project. 
+
+SYNC POLICY: This decides whether the application should automatically sync to match the source repository or if a manual sync should be required. Change this from Manual to Automatic.
+
+The next section contains a number of checkboxes. Leave these all unchecked. 
+
+### Source settings
+
+Repository URL: The full URL of the repository ending in `.git`. This can be copied directly from the repository under the same `<> Code` button where the codespace was launched but under the Local tab.  
+
+Revision: HEAD is selected by default. It is fine like this for the example. If you were working under a different repository branch you would specify that here.
+
+Path: The path to the Helm chart inside the repository. Argo CD automatically recognizes where Helm charts are stored. If you click the line under Path it will automatically show the flask-helm directoy. Select this to wrap up the Source section. 
+
+### Destination
+
+Cluster URL: `https://kubernetes.default.svc` will show up by default when the line under Cluster URL is selected for this instance. A different Kubernetes endpoint could be specified here, but for this example the default is correct.
+
+Namespace: Use the `argocd` namespace that was created after minikube started. A new namespace can be created with the `kubectl create namespace` command. For demonstration purposes `argocd` is fine. 
+
+### Create
+
+Those are all the fields required to deploy the application. Select the `CREATE` button at the top of the form. There will be a new pane in the Applications tab that shows the status of the newly added application. If everything worked correctly the status should move to Healthy and Synced in a few minutes. The container image needs to be downloaded from the container registry which may take a few minutes depending on your internet connection.  
