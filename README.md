@@ -86,3 +86,15 @@ Namespace: Use the `argocd` namespace that was created after minikube started. A
 ### Create
 
 Those are all the fields required to deploy the application. Select the `CREATE` button at the top of the form. There will be a new pane in the Applications tab that shows the status of the newly added application. If everything worked correctly the status should move to Healthy and Synced in a few minutes. The container image needs to be downloaded from the container registry which may take a few minutes depending on your internet connection.  
+
+### Expose the Flask UI
+
+Once the application has synced fully in Argo CD port-forwarding can be run to expose the UI and make the Flask UI accessible via your browser with
+
+`kubectl port-forward svc/flask-demo -n argocd 8001:5000`
+
+After running that access the Web UI by browsing to [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
+
+## Conclusion
+
+This tutorial provides a brief introduction in to how the CIRRUS cluster is setup with Argo CD, how applications are added to Argo CD, and how development work on Kubernetes via CI/CD can be handled. 
