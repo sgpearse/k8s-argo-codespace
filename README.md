@@ -17,12 +17,14 @@ The first steps we will take are to create a namespace in K8s named argocd and t
 ```
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -f argocd-insecure-install.yaml
+kubectl rollout restart deployment argocd-server -n argocd
 ```
 
 Wait until all the pods in the argocd namespace are up and running before proceeding to the next steps
 
 ```
-kubectl get pods -n argocd
+kubectl get pods -n argocd --watch
 ```
 
 When successful it will look like this:
@@ -43,7 +45,7 @@ argocd-server-7bbfdb874-s5h4l                       1/1     Running   0         
 
 ### Expose the ArgoCD UI
 
-`kubectl port-forward svc/argocd-server -n argocd 8002:443`
+`kubectl port-forward svc/argocd-server -n argocd 8002:80`
 
 The Argo CD UI will now be available at [https://127.0.0.1:8002](https://127.0.0.1:8002)
 
