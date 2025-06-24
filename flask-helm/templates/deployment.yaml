@@ -25,3 +25,6 @@ spec:
             cpu: {{ .Values.webapp.container.cpu }}
         ports:
         - containerPort: {{ .Values.webapp.container.port }}
+        env:
+        - name: WELCOME_MESSAGE
+          value: {{ .Values.app.welcomeMessage | quote }}
