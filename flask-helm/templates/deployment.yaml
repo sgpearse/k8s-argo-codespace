@@ -27,4 +27,4 @@ spec:
         - containerPort: {{ .Values.webapp.container.port }}
         env:
         - name: WELCOME_MESSAGE
-          value: {{ .Values.app.welcomeMessage | quote }}
+          value: {{ .Values.webapp.welcomeMessage | quote }}
