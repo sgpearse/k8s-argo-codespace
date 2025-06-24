@@ -6,7 +6,7 @@ webapp:
   path: /
   welcomeMessage: "Welcome to the Flask Demo!"
   container: 
-    image: docker.io/ncging/argo-flask-demo:2024-12-04.20.42
+    image: docker.io/ncging/argo-flask-demo:2025-06-24.16.33
     port: 5000
     memory: 1G
     cpu: 2
