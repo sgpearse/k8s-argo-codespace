@@ -6,5 +6,5 @@ webapp:
   path: /
   welcomeMessage: "I made a change to the Demo!!!!"
   container: 
-    image: docker.io/ncging/argo-flask-demo:2025-06-24.16.33
+    image: docker.io/ncging/argo-flask-demo:testv1
     port: 5000
