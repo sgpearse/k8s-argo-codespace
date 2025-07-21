@@ -6,6 +6,19 @@ Fork this repository in to your own GitHub account. Once the repository has been
 
 When the new Codespace launches a script will setup the environment and automatically run `minikube start` to launch a Kubernetes (K8s) cluster. As long as minikube starts without any issues it can now be used to install apps and get familiar with how Argo CD deploys and manages applications. 
 
+### Helpful Commands
+
+```bash
+# Watch pods in real-time
+kubectl get pods -n argocd -w
+
+# Check pod details if something goes wrong
+kubectl describe pod <pod-name> -n argocd
+
+# View application logs
+kubectl logs -f deployment/flask-demo -n argocd
+```
+
 ## Install Argo CD
 
 The first steps we will take are to create a namespace in K8s named argocd and then install Argo CD into that namespace. This can be accomplished by pasting the following commands in to the terminal window in VS Code.
@@ -99,20 +112,7 @@ After running that access the Web UI by browsing to [http://127.0.0.1:8001/](htt
 
 Argo CD looks to the repository every ~3 minutes to see if any changes have been made. If you don't want to wait for the automated sync you can always use the Sync button at the top to Sync manually. 
 
-#### Helpful Commands During This Section
-
-```bash
-# Watch pods in real-time
-kubectl get pods -n argocd -w
-
-# Check pod details if something goes wrong
-kubectl describe pod <pod-name> -n argocd
-
-# View application logs
-kubectl logs -f deployment/flask-demo -n argocd
-```
-
-#### Scaling: ReplicaSet from 1 to 3
+#### Scaling: Replicas from 1 to 3
 Let's scale from 1 to 3 running pods:
 
 1. Navigate to the `flask-helm/values.yaml` file in your codespace
@@ -141,7 +141,7 @@ The Flask app displays a welcome banner using an environment variable. Let's cus
 
 Let's see what happens when we make a mistake:
 
-1. In `values.yaml`, change the image tag from `2025-06-24.16.33` to `nonexistent-tag`
+1. In `values.yaml`, change the image tag from `"2025-06-24.16.33"` to `"bad-tag"`
 2. Commit and push this "mistake"
 3. **Observe what happens:**
    - Argo CD creates a new ReplicaSet
@@ -155,4 +155,25 @@ This style of GitOps is resilient! Bad deployments don't necessarily take down r
 
 ## Conclusion
 
-This tutorial provides a brief introduction in to how the CIRRUS cluster is setup with Argo CD, how applications are added to Argo CD, and how development work on Kubernetes via CI/CD can be handled. 
+This tutorial provides a brief introduction into how the CIRRUS cluster is setup with Argo CD, how applications are added to Argo CD, and how development work on Kubernetes via CI/CD can be handled. 
+
+## Quick Reference Commands
+```bash
+# Install Argo CD
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -f argocd-insecure-install.yaml
+kubectl rollout restart deployment argocd-server -n argocd
+
+# Watch all pods
+kubectl get pods -n argocd -w
+
+# Get admin password  
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+# Port forward Argo CD
+kubectl port-forward svc/argocd-server -n argocd 8002:80
+
+# Port forward Flask app
+kubectl port-forward svc/flask-demo -n argocd 8001:5000
+```
