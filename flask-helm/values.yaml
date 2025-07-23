@@ -4,7 +4,7 @@ webapp:
   name: flask-demo
   group: flask-demo
   path: /
-  welcomeMessage: "Welcome to the Flask Demo!"
+  welcomeMessage: "foo?"
   container: 
     image: docker.io/ncging/argo-flask-demo:2025-06-24.16.33
     port: 5000
